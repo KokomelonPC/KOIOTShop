@@ -14,7 +14,45 @@ const PRODUCT_API_URL = "https://script.google.com/macros/s/AKfycbxmE38FRHagWNxz
 const firebaseConfig={apiKey:"AIzaSyBN02k5-YhZc1uitpEfMfVpsPLAPYKQs7A",authDomain:"myshop-c3983.firebaseapp.com",projectId:"myshop-c3983"};const app=initializeApp(firebaseConfig);const auth=getAuth(app);
 onAuthStateChanged(auth,async(user)=>{if(!user){alert("กรุณา Login ก่อน");window.location.href="login.html";return;}document.getElementById("orderWelcome").innerText="รายการสั่งซื้อของ " + (user.displayName || user.email);await loadProductOrders(user);});
 async function loadProductOrders(user){const box=document.getElementById("ordersContainer");try{const res=await fetch(`${PRODUCT_API_URL}?action=getProductOrdersByEmail&email=${encodeURIComponent(user.email||"")}&uid=${encodeURIComponent(user.uid)}`);const data=await res.json();const orders=data.orders||[];if(!orders.length){box.innerHTML='<div class="empty-state">ยังไม่มีรายการสั่งซื้อสินค้า</div>';return;}box.innerHTML=orders.map(order=>`<div class="order-item"><strong>${order.orderId||"คำสั่งซื้อสินค้า"}</strong><div class="order-meta">${order.item||"-"}<br>ยอด: ${Number(order.amount||0).toLocaleString("th-TH")} บาท<br>สถานะ: ${order.status||"รอตรวจสอบ"}<br>ข้อความจากแอดมิน: ${order.adminReply||"-"}</div></div>`).join("");}catch(error){box.innerHTML='<div class="empty-state">ยังไม่สามารถดึงรายการได้ กรุณาลองใหม่อีกครั้ง</div>';}}
-</script></body></html>
+</script>
+  <div class="koiot-facebook-contact" aria-label="ติดต่อ KOIOT Shop ผ่าน Facebook">
+    <button class="koiot-facebook-toggle" type="button" onclick="toggleKoiotFacebookPanel()" aria-label="Facebook Fan Page" title="Facebook Fan Page">
+      <span class="koiot-facebook-icon">f</span>
+    </button>
+  </div>
+
+  <div id="koiotFacebookPanel" class="koiot-facebook-panel hidden">
+    <div class="koiot-facebook-head">
+      <div>
+        <span class="koiot-facebook-badge">Facebook Fan Page</span>
+        <h2>KOIOT Shop</h2>
+        <p>ติดต่อร้านผ่าน Facebook Page ได้โดยตรง</p>
+      </div>
+      <button class="koiot-facebook-close" type="button" onclick="toggleKoiotFacebookPanel(false)" aria-label="ปิด">×</button>
+    </div>
+    <div class="koiot-facebook-actions">
+      <a class="koiot-facebook-primary" href="https://www.facebook.com/profile.php?id=100092289725085" target="_blank" rel="noopener noreferrer">เปิด Facebook Page</a>
+      <a class="koiot-facebook-secondary" href="https://m.me/100092289725085" target="_blank" rel="noopener noreferrer">ส่งข้อความใน Messenger</a>
+    </div>
+  </div>
+
+  <script>
+    window.toggleKoiotFacebookPanel = function(forceState) {
+      var panel = document.getElementById('koiotFacebookPanel');
+      if (!panel) return;
+      var shouldOpen = typeof forceState === 'boolean' ? forceState : panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', !shouldOpen);
+    };
+    document.addEventListener('click', function(event) {
+      var panel = document.getElementById('koiotFacebookPanel');
+      var button = document.querySelector('.koiot-facebook-toggle');
+      if (!panel || panel.classList.contains('hidden')) return;
+      if (panel.contains(event.target) || (button && button.contains(event.target))) return;
+      panel.classList.add('hidden');
+    });
+  </script>
+</body></html>
+
 
 
 

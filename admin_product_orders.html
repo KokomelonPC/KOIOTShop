@@ -86,8 +86,46 @@ function renderOrders(){const term=document.getElementById("searchInput").value.
 window.selectOrder=function(orderId){selectedOrder=orders.find(order=>order.orderId===orderId);if(!selectedOrder)return;document.getElementById("detailEmpty").style.display="none";document.getElementById("detailContent").style.display="block";document.getElementById("detailStatusChip").innerText=fmt(selectedOrder.status);document.getElementById("detailOrderId").innerText=fmt(selectedOrder.orderId);document.getElementById("detailItem").innerText=`${fmt(selectedOrder.item)} x${fmt(selectedOrder.quantity)}`;document.getElementById("detailCustomer").innerText=`${fmt(selectedOrder.customerName)}\n${fmt(selectedOrder.email)}`;document.getElementById("detailPhone").innerText=fmt(selectedOrder.contactPhone);document.getElementById("detailLine").innerText=fmt(selectedOrder.contactLine);document.getElementById("detailFacebook").innerText=fmt(selectedOrder.contactFacebook);document.getElementById("detailPayment").innerText=`${money(selectedOrder.amount)}\n${fmt(selectedOrder.paymentMethod)}`;document.getElementById("detailNote").innerText=fmt(selectedOrder.note);document.getElementById("statusSelect").value=selectedOrder.status||"รอตรวจสอบ";document.getElementById("adminReply").value=selectedOrder.adminReply||"";const slip=document.getElementById("detailSlip");if(selectedOrder.slipUrl){slip.href=selectedOrder.slipUrl;slip.style.display="inline-flex";}else{slip.style.display="none";}renderOrders();}
 window.saveOrderUpdate=async function(){if(!selectedOrder){alert("กรุณาเลือกออเดอร์ก่อน");return;}try{const res=await fetch(PRODUCT_API_URL,{method:"POST",body:JSON.stringify({action:"updateProductOrder",orderId:selectedOrder.orderId,status:document.getElementById("statusSelect").value,adminReply:document.getElementById("adminReply").value.trim()})});const data=await res.json();if(data.success===false)throw new Error(data.message||"บันทึกไม่สำเร็จ");alert("บันทึกออเดอร์สินค้าแล้ว");await loadOrders();selectedOrder=orders.find(order=>order.orderId===data.orderId)||selectedOrder;if(selectedOrder)selectOrder(selectedOrder.orderId);}catch(error){console.error(error);alert("บันทึกไม่สำเร็จ: "+(error.message||"กรุณาลองใหม่"));}}
 </script>
+
+  <div class="koiot-facebook-contact" aria-label="ติดต่อ KOIOT Shop ผ่าน Facebook">
+    <button class="koiot-facebook-toggle" type="button" onclick="toggleKoiotFacebookPanel()" aria-label="Facebook Fan Page" title="Facebook Fan Page">
+      <span class="koiot-facebook-icon">f</span>
+    </button>
+  </div>
+
+  <div id="koiotFacebookPanel" class="koiot-facebook-panel hidden">
+    <div class="koiot-facebook-head">
+      <div>
+        <span class="koiot-facebook-badge">Facebook Fan Page</span>
+        <h2>KOIOT Shop</h2>
+        <p>ติดต่อร้านผ่าน Facebook Page ได้โดยตรง</p>
+      </div>
+      <button class="koiot-facebook-close" type="button" onclick="toggleKoiotFacebookPanel(false)" aria-label="ปิด">×</button>
+    </div>
+    <div class="koiot-facebook-actions">
+      <a class="koiot-facebook-primary" href="https://www.facebook.com/profile.php?id=100092289725085" target="_blank" rel="noopener noreferrer">เปิด Facebook Page</a>
+      <a class="koiot-facebook-secondary" href="https://m.me/100092289725085" target="_blank" rel="noopener noreferrer">ส่งข้อความใน Messenger</a>
+    </div>
+  </div>
+
+  <script>
+    window.toggleKoiotFacebookPanel = function(forceState) {
+      var panel = document.getElementById('koiotFacebookPanel');
+      if (!panel) return;
+      var shouldOpen = typeof forceState === 'boolean' ? forceState : panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', !shouldOpen);
+    };
+    document.addEventListener('click', function(event) {
+      var panel = document.getElementById('koiotFacebookPanel');
+      var button = document.querySelector('.koiot-facebook-toggle');
+      if (!panel || panel.classList.contains('hidden')) return;
+      if (panel.contains(event.target) || (button && button.contains(event.target))) return;
+      panel.classList.add('hidden');
+    });
+  </script>
 </body>
 </html>
+
 
 
 
