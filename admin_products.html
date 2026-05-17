@@ -19,43 +19,14 @@ window.editProduct=function(productId){const product=loadedProducts.find(p=>Stri
 function getProductImageUrl(product){const fileId=product.imageFileId||extractDriveFileId(product.imageUrl||"");return fileId?`https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w300`:product.imageUrl||"";}
 function extractDriveFileId(url){const text=String(url||"");const byQuery=text.match(/[?&]id=([^&]+)/);if(byQuery)return byQuery[1];const byPath=text.match(/\/d\/([^/]+)/);if(byPath)return byPath[1];return "";}window.loadProducts=async function(){const list=document.getElementById("productList");try{const res=await fetch(`${PRODUCT_API_URL}?action=getProducts`);const data=await res.json();const products=data.products||[];loadedProducts=products;if(!products.length){list.innerHTML='<p class="note">ยังไม่มีสินค้า</p>';return;}list.innerHTML=products.map(p=>`<div class="product-item"><img src="${getProductImageUrl(p)}" alt="" onerror="this.style.display='none';"><div><strong>${p.name||"ไม่มีชื่อสินค้า"}</strong><div class="product-meta">ราคา ${p.price||0} บาท | คงเหลือ ${p.stock||0}<br>สถานะ: ${p.status||"active"}</div><div class="item-actions"><button class="edit-btn" type="button" onclick="editProduct('${p.productId||""}')">แก้ไข</button></div></div></div>`).join("");}catch(error){list.innerHTML='<p class="note">ยังโหลดสินค้าไม่ได้ กรุณาลองใหม่อีกครั้ง</p>';}};
 </script>
+
   <div class="koiot-facebook-contact" aria-label="ติดต่อ KOIOT Shop ผ่าน Facebook">
-    <button class="koiot-facebook-toggle" type="button" onclick="toggleKoiotFacebookPanel()" aria-label="Facebook Fan Page" title="Facebook Fan Page">
+    <a class="koiot-facebook-toggle" href="https://www.facebook.com/profile.php?id=100092289725085" target="_blank" rel="noopener noreferrer" aria-label="Facebook Fan Page" title="Facebook Fan Page">
       <span class="koiot-facebook-icon">f</span>
-    </button>
+    </a>
   </div>
-
-  <div id="koiotFacebookPanel" class="koiot-facebook-panel hidden">
-    <div class="koiot-facebook-head">
-      <div>
-        <span class="koiot-facebook-badge">Facebook Fan Page</span>
-        <h2>KOIOT Shop</h2>
-        <p>ติดต่อร้านผ่าน Facebook Page ได้โดยตรง</p>
-      </div>
-      <button class="koiot-facebook-close" type="button" onclick="toggleKoiotFacebookPanel(false)" aria-label="ปิด">×</button>
-    </div>
-    <div class="koiot-facebook-actions">
-      <a class="koiot-facebook-primary" href="https://www.facebook.com/profile.php?id=100092289725085" target="_blank" rel="noopener noreferrer">เปิด Facebook Page</a>
-      <a class="koiot-facebook-secondary" href="https://m.me/100092289725085" target="_blank" rel="noopener noreferrer">ส่งข้อความใน Messenger</a>
-    </div>
-  </div>
-
-  <script>
-    window.toggleKoiotFacebookPanel = function(forceState) {
-      var panel = document.getElementById('koiotFacebookPanel');
-      if (!panel) return;
-      var shouldOpen = typeof forceState === 'boolean' ? forceState : panel.classList.contains('hidden');
-      panel.classList.toggle('hidden', !shouldOpen);
-    };
-    document.addEventListener('click', function(event) {
-      var panel = document.getElementById('koiotFacebookPanel');
-      var button = document.querySelector('.koiot-facebook-toggle');
-      if (!panel || panel.classList.contains('hidden')) return;
-      if (panel.contains(event.target) || (button && button.contains(event.target))) return;
-      panel.classList.add('hidden');
-    });
-  </script>
 </body></html>
+
 
 
 

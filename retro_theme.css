@@ -335,6 +335,7 @@ hr,
   color: #1f2937 !important;
 }
 
+
 /* KOIOT Facebook floating contact */
 .koiot-facebook-contact {
   position: fixed;
@@ -355,6 +356,7 @@ hr,
   background: linear-gradient(135deg, #1877f2, #0f5ed7) !important;
   box-shadow: 0 18px 38px rgba(24, 119, 242, 0.28) !important;
   cursor: pointer;
+  text-decoration: none !important;
 }
 
 .koiot-facebook-toggle:hover {
@@ -375,106 +377,55 @@ hr,
   line-height: 1;
 }
 
-.koiot-facebook-panel {
-  position: fixed;
-  right: 24px;
-  bottom: 94px;
-  z-index: 69;
-  width: min(360px, calc(100vw - 28px));
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #e7dcc8;
-  color: #1f2937;
-  background: #fffaf0;
-  box-shadow: 0 22px 54px rgba(68, 55, 38, 0.18);
+/* Payment text contrast fixes */
+.payment-card,
+.bank-card-list,
+.bank-row,
+.qr-frame,
+.qr-caption,
+.qr-missing {
+  color: #1f2937 !important;
 }
 
-.koiot-facebook-panel.hidden {
-  display: none;
+.payment-card h3,
+.payment-card p,
+.bank-row p,
+.bank-name,
+.qr-caption strong,
+.qr-caption span,
+.qr-missing,
+.qr-missing strong {
+  color: #1f2937 !important;
+  opacity: 1 !important;
 }
 
-.koiot-facebook-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
+.payment-card p,
+.bank-row span,
+.qr-caption span {
+  color: #6f665a !important;
 }
 
-.koiot-facebook-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 6px 11px;
-  border-radius: 999px;
-  color: #1877f2;
-  background: #e8f1ff;
-  border: 1px solid rgba(24, 119, 242, 0.14);
-  font-size: 0.84rem;
-  font-weight: 850;
+.bank-row {
+  background: #fffaf0 !important;
+  border-color: #e7dcc8 !important;
 }
 
-.koiot-facebook-head h2 {
-  margin: 12px 0 0;
-  color: #1f2937;
-  font-size: 1.24rem;
+.bank-logo {
+  background: #fff !important;
+  box-shadow: 0 12px 24px rgba(68, 55, 38, 0.12) !important;
 }
 
-.koiot-facebook-head p {
-  margin: 7px 0 0;
-  color: #6f665a;
-  line-height: 1.6;
+.bank-logo-fallback {
+  color: #0f766e !important;
 }
 
-.koiot-facebook-close {
-  min-width: 38px !important;
-  min-height: 38px !important;
-  padding: 0 !important;
-  border-radius: 8px !important;
-  color: #20302d !important;
-  background: #f4ead7 !important;
-  border: 1px solid #e7dcc8 !important;
-  font-size: 1.25rem !important;
-  line-height: 1 !important;
-}
-
-.koiot-facebook-actions {
-  display: grid;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.koiot-facebook-primary,
-.koiot-facebook-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 850;
-}
-
-.koiot-facebook-primary {
-  color: #fff !important;
-  background: #1877f2 !important;
-  border: 1px solid #1877f2 !important;
-}
-
-.koiot-facebook-secondary {
-  color: #20302d !important;
-  background: #f4ead7 !important;
-  border: 1px solid #e7dcc8 !important;
+.qr-frame {
+  background: #f8fafc !important;
 }
 
 @media (max-width: 680px) {
   .koiot-facebook-contact {
     right: 16px;
     bottom: 16px;
-  }
-
-  .koiot-facebook-panel {
-    right: 14px;
-    bottom: 84px;
   }
 }
