@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - KOIOT Shop</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 24%),
+    radial-gradient(circle at right center, rgba(16, 185, 129, 0.16), transparent 24%),
+    linear-gradient(135deg, #f0fdf4 0%, #eef2ff 50%, #f8fafc 100%);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.shell { width: min(1080px, 100%); display: grid; grid-template-columns: 1fr 440px; gap: 22px; }
+.intro, .box { border-radius: 30px; box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14); }
+.intro {
+  padding: 38px;
+  color: white;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.94), rgba(16, 185, 129, 0.9), rgba(59, 130, 246, 0.84));
+}
+.intro .badge { display: inline-block; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.16); }
+.intro h1 { margin: 18px 0 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+.intro p { margin: 0; color: rgba(236, 253, 245, 0.92); line-height: 1.8; }
+.intro ul { margin: 24px 0 0; padding-left: 20px; line-height: 1.9; color: rgba(236, 253, 245, 0.96); }
+.box {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  padding: 30px;
+}
+.box h2 { margin: 0 0 8px; text-align: center; }
+.sub { margin: 0 0 22px; text-align: center; color: #64748b; }
+label { display: block; margin-bottom: 8px; font-weight: 600; }
+input {
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(248, 250, 252, 0.92);
+}
+input:focus { outline: 2px solid rgba(16, 185, 129, 0.22); border-color: #34d399; }
+button {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+.social-button {
+  margin-top: 12px;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+.social-button:hover { background: #f8fafc; }
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.social-icon {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(148, 163, 184, 0.28);
+}
+.login-link { text-align: center; margin-top: 18px; color: #64748b; }
+.login-link a { color: #4f46e5; text-decoration: none; font-weight: 700; }
+.back-home { display: inline-block; margin-top: 18px; color: #475569; text-decoration: none; }
+@media (max-width: 860px) {
+  .shell { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="stylesheet" href="retro_theme.css">
+</head>
+<body>
+  <div class="shell">
+    <section class="intro">
+      <span class="badge">📝 Create Account</span>
+      <h1>สมัครสมาชิกเพื่อเริ่มต้นใช้งาน</h1>
+      <p>สร้างบัญชีเพื่อเข้าสู่ระบบ สั่งซื้อสินค้า ชำระเงิน และติดตามคำสั่งซื้อได้ครบถ้วน</p>
+      <ul>
+        <li>ตั้งชื่อที่ใช้ระบุตัวตนในระบบ</li>
+        <li>ใช้อีเมลสำหรับเข้าสู่ระบบในครั้งถัดไป</li>
+        <li>ตรวจสอบรหัสผ่านและการยืนยันให้ตรงกันก่อนสมัคร</li>
+      </ul>
+    </section>
+
+    <div class="box">
+      <h2>สมัครสมาชิก</h2>
+      <p class="sub">กรอกข้อมูลเพื่อสร้างบัญชีใหม่</p>
+
+      <label for="name">ชื่อของคุณ</label>
+      <input type="text" id="name" placeholder="ชื่อของคุณ">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Email">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Password">
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+      <button onclick="register()">Register</button>
+      <div class="divider">หรือใช้งานด้วย</div>
+      <div class="social-grid">
+        <button class="social-button" type="button" onclick="registerWithGoogle()">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#EA4335" d="M12 10.2v3.9h5.4c-.2 1.3-1.5 3.9-5.4 3.9-3.2 0-5.9-2.7-5.9-6s2.7-6 5.9-6c1.8 0 3 .8 3.7 1.4l2.5-2.4C16.6 3.5 14.5 2.6 12 2.6 6.9 2.6 2.8 6.8 2.8 12s4.1 9.4 9.2 9.4c5.3 0 8.8-3.7 8.8-9 0-.6-.1-1.1-.1-1.6H12z"/>
+            <path fill="#34A853" d="M3.8 7.9l3.2 2.3C7.8 8 9.7 6.6 12 6.6c1.8 0 3 .8 3.7 1.4l2.5-2.4C16.6 3.5 14.5 2.6 12 2.6c-3.5 0-6.6 2-8.2 5.3z"/>
+            <path fill="#FBBC05" d="M12 21.4c2.4 0 4.5-.8 6-2.2l-2.8-2.2c-.8.6-1.8 1-3.2 1-2.4 0-4.5-1.6-5.2-3.9l-3.3 2.5c1.6 3.1 4.7 4.8 8.5 4.8z"/>
+            <path fill="#4285F4" d="M3.8 16.6l3.3-2.5c-.2-.6-.3-1.3-.3-2.1s.1-1.4.3-2.1L3.8 7.4C3.1 8.8 2.8 10.4 2.8 12s.4 3.2 1 4.6z"/>
+          </svg>
+          <span>Google</span>
+        </button>
+        <button class="social-button" type="button" onclick="registerWithFacebook()">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="#1877F2"/>
+            <path fill="#fff" d="M13.3 20v-7h2.3l.4-2.7h-2.7V8.6c0-.8.2-1.3 1.3-1.3H16V4.9c-.3 0-1.1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2H8.5V13h2.2v7h2.6z"/>
+          </svg>
+          <span>Facebook</span>
+        </button>
+      </div>
+
+      <div class="login-link">
+        มีบัญชีแล้ว? <a href="login.html">Login</a>
+      </div>
+
+      <a class="back-home" href="index.html">← กลับหน้าร้านค้า</a>
+    </div>
+  </div>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import {
+    getAuth,
+    FacebookAuthProvider,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithPopup,
+    updateProfile
+  } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBN02k5-YhZc1uitpEfMfVpsPLAPYKQs7A",
+    authDomain: "myshop-c3983.firebaseapp.com",
+    projectId: "myshop-c3983",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
+  googleProvider.setCustomParameters({ prompt: "select_account" });
+  facebookProvider.setCustomParameters({ display: "popup" });
+
+
+  function getFriendlyAuthError(error) {
+    const messages = {
+      "auth/invalid-email": "รูปแบบอีเมลไม่ถูกต้อง กรุณาตรวจสอบอีเมลอีกครั้ง",
+      "auth/user-not-found": "ไม่พบบัญชีนี้ในระบบ กรุณาสมัครสมาชิกก่อนใช้งาน",
+      "auth/wrong-password": "รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง",
+      "auth/invalid-credential": "อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง",
+      "auth/missing-password": "กรุณากรอกรหัสผ่าน",
+      "auth/email-already-in-use": "อีเมลนี้ถูกสมัครไว้แล้ว กรุณาเข้าสู่ระบบ หรือใช้เมนูลืมรหัสผ่าน",
+      "auth/weak-password": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+      "auth/too-many-requests": "ระบบล็อกการลองเข้าสู่ระบบชั่วคราว เพราะลองหลายครั้งเกินไป กรุณารอสักพักแล้วลองใหม่",
+      "auth/popup-closed-by-user": "หน้าต่างเข้าสู่ระบบถูกปิดก่อนดำเนินการเสร็จ",
+      "auth/network-request-failed": "เชื่อมต่อเครือข่ายไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ต"
+    };
+
+    return messages[error.code] || "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง";
+  }
+  window.register = function() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (!name || !email || !password) {
+      alert("กรุณากรอกข้อมูลให้ครบ");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("รหัสผ่านไม่ตรงกัน");
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        return updateProfile(userCredential.user, {
+          displayName: name
+        });
+      })
+      .then(() => {
+        alert("สมัครสำเร็จ");
+        window.location.href = "login.html";
+      })
+      .catch((error) => {
+        alert(getFriendlyAuthError(error));
+      });
+  };
+
+  window.registerWithGoogle = function() {
+    signInWithPopup(auth, googleProvider)
+      .then(() => {
+        alert("เข้าสู่ระบบด้วย Google สำเร็จ");
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        alert(getFriendlyAuthError(error));
+      });
+  };
+
+  window.registerWithFacebook = function() {
+    signInWithPopup(auth, facebookProvider)
+      .then(() => {
+        alert("เข้าสู่ระบบด้วย Facebook สำเร็จ");
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        alert(getFriendlyAuthError(error));
+      });
+  };
+  </script>
+</body>
+</html>
+
+
+
+
+
+

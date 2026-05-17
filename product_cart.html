@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOIOT Shop | ตะกร้าสินค้า</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+:root{--bg-sidebar:linear-gradient(180deg,rgba(15,23,42,.98),rgba(30,41,59,.96));--text-main:#0f172a;--text-soft:#475569;--text-muted:#94a3b8;--line-soft:rgba(148,163,184,.18);--shadow-xl:0 28px 70px rgba(15,23,42,.18);--shadow-md:0 12px 28px rgba(15,23,42,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:var(--text-main);background:radial-gradient(circle at top left,rgba(14,165,233,.18),transparent 26%),radial-gradient(circle at right center,rgba(16,185,129,.14),transparent 24%),linear-gradient(180deg,#f8fbff 0%,#eef4ff 48%,#f8fafc 100%)}
+.layout{display:flex;min-height:100vh}.sidebar{width:280px;padding:26px 22px;color:#fff;background:var(--bg-sidebar);border-right:1px solid rgba(255,255,255,.06);position:sticky;top:0;height:100vh}.brand-box{padding:22px 18px;border-radius:24px;background:linear-gradient(135deg,rgba(37,99,235,.24),rgba(14,165,233,.16),rgba(16,185,129,.24))}.brand-box h2{margin:0;font-size:1.45rem}.brand-box p{margin:10px 0 0;color:rgba(226,232,240,.88);line-height:1.7;font-size:.95rem}.menu{margin-top:28px}.menu-label{margin:0 0 14px;padding-left:10px;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(148,163,184,.78)}.menu a,.menu-toggle{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;margin-bottom:10px;border:none;border-radius:14px;background:transparent;color:#dbeafe;font:inherit;font-size:16px;text-align:left;text-decoration:none;cursor:pointer}.menu a:hover,.menu-toggle:hover{background:rgba(59,130,246,.16)}.menu-toggle.active{color:#fff;background:linear-gradient(135deg,rgba(37,99,235,.8),rgba(16,185,129,.78));box-shadow:0 14px 26px rgba(37,99,235,.22)}.menu-toggle span{margin-left:auto}.product-submenu{display:grid;gap:8px;margin:-2px 0 12px 22px;padding-left:12px;border-left:1px solid rgba(148,163,184,.28)}.product-submenu a{margin-bottom:0;padding:10px 12px;border-radius:12px;color:rgba(219,234,254,.9);background:rgba(15,23,42,.18)}.product-submenu a.active{color:#fff;background:rgba(16,185,129,.48)}
+.main{flex:1;padding:26px}.hero{padding:36px;border-radius:34px;color:#fff;background:linear-gradient(135deg,rgba(15,118,110,.96),rgba(37,99,235,.92),rgba(79,70,229,.88));box-shadow:var(--shadow-xl)}.eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.16)}.hero h1{margin:18px 0 0;font-size:clamp(2rem,4vw,3.2rem)}.hero p{margin:14px 0 0;max-width:760px;color:rgba(239,246,255,.9);line-height:1.8}.content-shell{max-width:1100px;margin:28px auto 0}.panel{background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.92);border-radius:24px;padding:24px;box-shadow:var(--shadow-md)}.cart-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:22px}.cart-list{display:grid;gap:12px}.cart-item{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px;border:1px solid var(--line-soft);border-radius:18px;background:#fff}.cart-item img{width:96px;height:76px;object-fit:cover;border-radius:12px;background:#e2e8f0}.cart-item h3{margin:0;font-size:1rem}.cart-item p{margin:6px 0 0;color:var(--text-soft)}.qty-control{display:flex;align-items:center;gap:8px;margin-top:10px}.qty-control button,.remove-btn{border:none;border-radius:12px;background:#e2e8f0;color:#0f172a;font:inherit;font-weight:800;cursor:pointer}.qty-control button{width:34px;height:34px}.remove-btn{padding:10px 12px;background:#fee2e2;color:#991b1b}.summary-box{position:sticky;top:26px;display:grid;gap:14px}.summary-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line-soft)}.summary-total{font-size:1.28rem;font-weight:900}.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 18px;border:none;border-radius:14px;font:inherit;font-weight:800;text-decoration:none;cursor:pointer}.primary{background:linear-gradient(135deg,#2563eb,#10b981);color:#fff}.secondary{background:#e2e8f0;color:#0f172a}.empty-state{padding:22px;border-radius:18px;background:#f8fafc;border:1px solid var(--line-soft);color:var(--text-soft);line-height:1.7}footer{margin-top:26px;padding:24px;border-radius:24px;background:rgba(15,23,42,.96);color:var(--text-muted);text-align:center}@media(max-width:900px){.layout{flex-direction:column}.sidebar{width:100%;height:auto;position:relative}.main{padding:18px}.hero{padding:28px 24px;border-radius:28px}.cart-layout{grid-template-columns:1fr}.cart-item{grid-template-columns:76px 1fr}.cart-item img{width:76px;height:66px}.remove-btn{grid-column:1/-1}}
+</style>
+<link rel="stylesheet" href="retro_theme.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand-box"><h2>🛒 KOIOT Shop</h2><p>รวมสินค้าที่คุณเพิ่มไว้ในตะกร้า ก่อนส่งไปหน้าชำระเงิน</p></div>
+    <nav class="menu">
+      <p class="menu-label">สินค้าและบริการของเรา</p>
+      
+      <button class="menu-toggle active" type="button">🛒 สินค้า KOIOT Shop <span>▴</span></button>
+      <div class="product-submenu">
+        <a href="koiot_products.html">หน้าแรกสินค้า</a>
+        <a href="product_cart.html" class="active">ตะกร้าสินค้า</a>
+        <a href="product_account.html">My Account</a>
+        <a href="product_orders.html">My Orders</a>
+        <a href="shipping_address.html">ที่อยู่จัดส่ง</a>
+      </div>
+      
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section class="hero">
+      <span class="eyebrow">Product Cart</span>
+      <h1>ตะกร้าสินค้า</h1>
+      <p>ตรวจสอบรายการสินค้า จำนวน และยอดรวมก่อนชำระเงิน ระบบจะส่งรายการทั้งหมดไปหน้าแจ้งโอนสำหรับการสั่งซื้อสินค้า</p>
+    </section>
+
+    <div class="content-shell">
+      <section class="cart-layout">
+        <div class="panel">
+          <h2>รายการในตะกร้า</h2>
+          <div id="cartList" class="cart-list"></div>
+        </div>
+        <aside class="panel summary-box">
+          <h2>สรุปยอด</h2>
+          <div class="summary-line"><span>จำนวนสินค้า</span><strong id="totalQty">0</strong></div>
+          <div class="summary-line"><span>ยอดสินค้า</span><strong id="subtotalAmount">0 บาท</strong></div><div class="summary-line"><span>ค่าส่ง</span><strong id="shippingFee">0 บาท</strong></div><div class="summary-line summary-total"><span>ยอดรวม</span><strong id="totalAmount">0 บาท</strong></div>
+          <button class="primary" type="button" onclick="checkoutCart()">ไปชำระเงิน</button>
+          <a class="secondary" href="koiot_products.html">เลือกสินค้าเพิ่ม</a>
+          <button class="secondary" type="button" onclick="clearCart()">ล้างตะกร้า</button>
+        </aside>
+      </section>
+      <footer>KOIOT Shop</footer>
+    </div>
+  </main>
+</div>
+
+<script>
+const CART_KEY = "koiotProductCart";
+const SHIPPING_FEE = 50;
+const FREE_SHIPPING_MINIMUM = 1000;
+
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function formatBaht(value) {
+  return `${Number(value || 0).toLocaleString("th-TH")} บาท`;
+}
+
+function getCartSummary(cart) {
+  const subtotal = cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.quantity || 0), 0);
+  const shipping = subtotal > 0 && subtotal < FREE_SHIPPING_MINIMUM ? SHIPPING_FEE : 0;
+  return { subtotal, shipping, total: subtotal + shipping };
+}
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+function renderCart() {
+  const cart = getCart();
+  const list = document.getElementById("cartList");
+  const totalQty = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+  const summary = getCartSummary(cart);
+
+  document.getElementById("totalQty").innerText = totalQty.toLocaleString("th-TH");
+  document.getElementById("subtotalAmount").innerText = formatBaht(summary.subtotal);
+  document.getElementById("shippingFee").innerText = summary.subtotal >= FREE_SHIPPING_MINIMUM ? "ฟรี" : formatBaht(summary.shipping);
+  document.getElementById("totalAmount").innerText = formatBaht(summary.total);
+
+  if (!cart.length) {
+    list.innerHTML = `<div class="empty-state">ยังไม่มีสินค้าในตะกร้า กลับไปเลือกสินค้าก่อนชำระเงิน</div>`;
+    return;
+  }
+
+  list.innerHTML = cart.map((item, index) => `
+    <article class="cart-item">
+      <img src="${escapeHTML(item.imageUrl || "")}" alt="${escapeHTML(item.name || "สินค้า KOIOT")}" onerror="this.style.display='none';">
+      <div>
+        <h3>${escapeHTML(item.name || "สินค้า KOIOT")}</h3>
+        <p>${formatBaht(item.price)} x ${Number(item.quantity || 1).toLocaleString("th-TH")}</p>
+        <div class="qty-control">
+          <button type="button" onclick="changeQty(${index}, -1)" aria-label="ลดจำนวน">-</button>
+          <strong>${Number(item.quantity || 1).toLocaleString("th-TH")}</strong>
+          <button type="button" onclick="changeQty(${index}, 1)" aria-label="เพิ่มจำนวน">+</button>
+        </div>
+      </div>
+      <button class="remove-btn" type="button" onclick="removeItem(${index})">ลบ</button>
+    </article>
+  `).join("");
+}
+
+function changeQty(index, delta) {
+  const cart = getCart();
+  if (!cart[index]) return;
+  cart[index].quantity = Math.max(1, Number(cart[index].quantity || 1) + delta);
+  saveCart(cart);
+  renderCart();
+}
+
+function removeItem(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  renderCart();
+}
+
+function clearCart() {
+  if (!getCart().length) return;
+  if (!confirm("ล้างสินค้าทั้งหมดออกจากตะกร้า?")) return;
+  saveCart([]);
+  renderCart();
+}
+
+function checkoutCart() {
+  const cart = getCart();
+  if (!cart.length) {
+    alert("ยังไม่มีสินค้าในตะกร้า");
+    return;
+  }
+
+  const summary = getCartSummary(cart);
+  const itemText = cart.map(item => `${item.name || "สินค้า KOIOT"} x${Number(item.quantity || 1)}`).join(", ");
+  const productIds = cart.map(item => item.productId || "").filter(Boolean).join(",");
+
+  window.location.href = `payment.html?${new URLSearchParams({
+    type: "product",
+    productId: productIds || "CART",
+    item: itemText,
+    amount: summary.total,
+    subtotal: summary.subtotal,
+    shipping: summary.shipping
+  }).toString()}`;
+}
+
+renderCart();
+</script>
+</body>
+</html>
+
+
+
+
+
+

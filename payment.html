@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แจ้งโอนเงิน | KOIOT Shop</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 24%),
+    radial-gradient(circle at right center, rgba(79, 70, 229, 0.14), transparent 24%),
+    linear-gradient(135deg, #f0fdf4 0%, #eef2ff 50%, #f8fafc 100%);
+  padding: 24px;
+}
+.shell {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 22px;
+}
+.intro, .box {
+  border-radius: 30px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+}
+.intro {
+  padding: 38px;
+  color: white;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.94), rgba(37, 99, 235, 0.9), rgba(79, 70, 229, 0.84));
+}
+.intro .badge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.16);
+}
+.intro h1 { margin: 18px 0 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+.intro p { margin: 0; color: rgba(236, 253, 245, 0.94); line-height: 1.8; }
+.summary {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+.summary h3 { margin-top: 0; }
+.summary p { margin: 8px 0; }
+.box {
+  background: rgba(255,255,255,0.84);
+  border: 1px solid rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  padding: 30px;
+}
+.box h2 { margin: 0 0 8px; }
+.sub { margin: 0 0 22px; color: #64748b; }
+label { display: block; margin-bottom: 8px; font-weight: 600; }
+input, textarea {
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(248, 250, 252, 0.92);
+}
+textarea { resize: vertical; min-height: 100px; }
+button {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+button:disabled { background: #94a3b8; cursor: not-allowed; }
+.payment-options {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+.payment-card {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.payment-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+.payment-card p {
+  margin: 8px 0;
+}
+.bank-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.bank-logo {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #138f43;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+}
+.bank-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+.bank-logo-fallback {
+  display: none;
+}
+.bank-name {
+  margin: 0;
+  font-weight: 800;
+}
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.qr-frame {
+  overflow: hidden;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: #0f172a;
+}
+.qr-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.18;
+  object-fit: contain;
+  padding: 12px;
+  background: #ffffff;
+}
+.qr-caption {
+  padding: 12px 14px 14px;
+  border-top: 1px solid rgba(226, 232, 240, 0.85);
+}
+.qr-caption strong {
+  display: block;
+  margin-bottom: 4px;
+}
+.qr-caption span {
+  color: #64748b;
+  font-size: 0.92rem;
+}
+.qr-missing {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: 18px;
+  text-align: center;
+  color: #64748b;
+  background: #f8fafc;
+}
+.method-select {
+  margin: 18px 0;
+  padding: 16px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+}
+.method-select h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+.method-options {
+  display: grid;
+  gap: 10px;
+}
+.method-options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  cursor: pointer;
+}
+.method-options input {
+  width: auto;
+  margin: 0;
+}
+@media (max-width: 620px) {
+  .payment-grid { grid-template-columns: 1fr; }
+  .qr-frame img { aspect-ratio: 1 / 1.08; }
+}
+.back-home { display: inline-block; margin-top: 18px; color: #475569; text-decoration: none; }
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="stylesheet" href="retro_theme.css">
+</head>
+<body>
+  <div class="shell">
+    <section class="intro">
+      <span class="badge">💳 Payment Notice</span>
+      <h1 id="paymentTitle">แจ้งโอนเงินเพื่อยืนยันการเช่า</h1>
+      <p id="paymentDescription">กรอกข้อมูลการโอนเงินให้ครบถ้วน แล้วแนบสลิปเพื่อส่งให้ระบบตรวจสอบ หลังส่งแล้วลูกค้าจะติดตามสถานะได้ที่หน้า My Orders</p>
+
+      <div class="summary">
+        <h3>รายการที่ต้องชำระ</h3>
+        <p><strong>รายการ:</strong> <span id="itemName"></span></p>
+      </div>
+
+      <div class="payment-options">
+        <div class="payment-card bank-card-list">
+          <div class="bank-row">
+            <div class="bank-logo" aria-label="TTB">
+              <img src="ttb-logo.png" alt="TTB" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="bank-logo-fallback">TTB</span>
+            </div>
+            <div>
+              <p class="bank-name">ธนาคารทหารไทยธนชาต (TTB)</p>
+              <p>เลขบัญชี: <strong>921-7-80960-8</strong></p>
+              <p><strong>ชื่อบัญชี:</strong> นาย กัมพล องการ</p>
+            </div>
+          </div>
+
+          <div class="bank-row">
+            <div class="bank-logo" aria-label="Kasikornbank">
+              <img src="kasikorn-logo.png" alt="Kasikornbank" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <span class="bank-logo-fallback">K+</span>
+            </div>
+            <div>
+              <p class="bank-name">ธนาคารกสิกรไทย (KBank)</p>
+              <p>เลขบัญชี: <strong>554-2-31395-3</strong></p>
+              <p><strong>ชื่อบัญชี:</strong> นาย กัมพล องการ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-grid">
+          <div class="qr-frame">
+            <img src="promptpay-qr.jpg" alt="QR Code พร้อมเพย์" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="qr-missing" style="display:none;">เพิ่มไฟล์รูป QR พร้อมเพย์ชื่อ<br><strong>promptpay-qr.jpg</strong></div>
+            <div class="qr-caption">
+              <strong>QR Code พร้อมเพย์</strong>
+              <span>สแกนเพื่อโอนเข้าบัญชี นาย กัมพล องการ</span>
+            </div>
+          </div>
+
+          <div class="qr-frame">
+            <img src="truemoney-qr.jpg" alt="QR Code TrueMoney" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+            <div class="qr-missing" style="display:none;">เพิ่มไฟล์รูป QR TrueMoney ชื่อ<br><strong>truemoney-qr.jpg</strong></div>
+            <div class="qr-caption">
+              <strong>QR Code TrueMoney</strong>
+              <span>สแกนชำระผ่าน TrueMoney Wallet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="box">
+      <h2>แบบฟอร์มแจ้งโอน</h2>
+      <p class="sub">ตรวจสอบข้อมูลให้ถูกต้องก่อนส่งทุกครั้ง</p>
+
+      <div class="method-select">
+        <h3>เลือกช่องทางชำระเงิน</h3>
+        <div class="method-options">
+          <label><input type="radio" name="paymentMethod" value="โอนธนาคารทหารไทยธนชาต (TTB)" checked> โอนธนาคารทหารไทยธนชาต (TTB)</label>
+          <label><input type="radio" name="paymentMethod" value="โอนธนาคารกสิกรไทย (KBank)"> โอนธนาคารกสิกรไทย (KBank)</label>
+          <label><input type="radio" name="paymentMethod" value="QR พร้อมเพย์"> QR Code พร้อมเพย์</label>
+          <label><input type="radio" name="paymentMethod" value="QR TrueMoney"> QR Code TrueMoney</label>
+        </div>
+      </div>
+      <label for="name">ชื่อผู้โอน</label>
+      <input id="name" type="text" placeholder="กรอกชื่อผู้โอน">
+
+      <label for="amount">จำนวนเงิน (บาท)</label>
+      <input id="amount" type="number" placeholder="เช่น 500">
+
+      <label for="note">รายละเอียดเพิ่มเติม</label>
+      <textarea id="note" placeholder="รายละเอียดเพิ่มเติม"></textarea>
+
+      <label for="slip">แนบสลิปโอนเงิน</label>
+      <input type="file" id="slip" accept="image/*">
+
+      <button id="submitBtn" onclick="submitPayment()">ส่งแจ้งโอน</button>
+      <a class="back-home" href="index.html">← กลับหน้าร้านค้า</a>
+    </div>
+  </div>
+
+  <script src="tracking.js"></script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+
+  const ORDER_API_URL = "https://script.google.com/macros/s/AKfycbyPC-bIh5AYPp0PCTuQoC-XEMmmwJLVAHN7cBLEa8euDTSDgUtKGqGQQpth1bT_QtKS/exec";
+  const PRODUCT_API_URL = "https://script.google.com/macros/s/AKfycbxmE38FRHagWNxzFz8htUBh_2V212bvEOElHwQbYZThoQQJyXcI9JAJI-b3b0u279g/exec";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBN02k5-YhZc1uitpEfMfVpsPLAPYKQs7A",
+    authDomain: "myshop-c3983.firebaseapp.com",
+    projectId: "myshop-c3983",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const AUTO_LOGOUT_MS = 30 * 60 * 1000;
+  const AUTO_LOGOUT_FLAG = "kopcAutoLogout";
+  let autoLogoutTimer = null;
+  let stopTracking = () => {};
+
+  let currentUser = null;
+
+  function clearAutoLogoutTimer() {
+    if (autoLogoutTimer) {
+      clearTimeout(autoLogoutTimer);
+    }
+  }
+
+  function resetAutoLogoutTimer() {
+    clearAutoLogoutTimer();
+
+    autoLogoutTimer = setTimeout(() => {
+      sessionStorage.setItem(AUTO_LOGOUT_FLAG, "1");
+      alert("ไม่มีการใช้งานเกิน 30 นาที ระบบออกจากระบบอัตโนมัติแล้ว");
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      });
+    }, AUTO_LOGOUT_MS);
+  }
+
+  ["click", "keydown", "mousemove", "scroll", "touchstart"].forEach((eventName) => {
+    window.addEventListener(eventName, resetAutoLogoutTimer, { passive: true });
+  });
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      if (sessionStorage.getItem(AUTO_LOGOUT_FLAG) === "1") {
+        sessionStorage.removeItem(AUTO_LOGOUT_FLAG);
+        window.location.href = "login.html";
+        return;
+      }
+
+      alert("กรุณา Login ก่อน");
+      window.location.href = "login.html";
+      return;
+    }
+
+    currentUser = user;
+    resetAutoLogoutTimer();
+    stopTracking();
+    stopTracking = window.KopcTracking
+      ? window.KopcTracking.startUserTracking(user, {
+          page: "payment.html",
+          pageLabel: "หน้าแจ้งโอนเงิน"
+        })
+      : () => {};
+    document.getElementById("name").value = user.displayName || user.email;
+  });
+
+  const params = new URLSearchParams(location.search);
+  const set = params.get("set");
+  const isRenewal = params.get("renew") === "1";
+  const parentOrderId = params.get("orderId") || "";
+  const isProductPayment = params.get("type") === "product";
+  const productId = params.get("productId") || "";
+  const productItem = params.get("item") || "";
+  const productAmount = params.get("amount") || "";
+  const productSubtotal = params.get("subtotal") || "";
+  const productShipping = params.get("shipping") || "";
+  const isCartPayment = productId.includes(",") || productId === "CART";
+  const itemName = isProductPayment ? (productItem || "สินค้า KOIOT") : (set ? `${isRenewal ? "ต่ออายุชุดคอม" : "ชุดคอม"} ${set}` : "-");
+  document.getElementById("itemName").innerText = itemName;
+
+  if (isProductPayment) {
+    document.getElementById("paymentTitle").innerText = "แจ้งโอนเงินเพื่อสั่งซื้อสินค้า";
+    document.getElementById("paymentDescription").innerText =
+      "กรอกข้อมูลการโอนเงินสำหรับสั่งซื้อสินค้า แล้วแนบสลิปเพื่อส่งให้แอดมินตรวจสอบ หลังส่งแล้วติดตามสถานะได้ที่หน้า My Orders ของสินค้า";
+    document.getElementById("amount").value = productAmount;
+    const shippingNote = productSubtotal
+      ? `ยอดสินค้า ${Number(productSubtotal || 0).toLocaleString("th-TH")} บาท, ค่าส่ง ${Number(productShipping || 0) === 0 ? "ฟรี" : Number(productShipping || 0).toLocaleString("th-TH") + " บาท"}, ยอดรวม ${Number(productAmount || 0).toLocaleString("th-TH")} บาท`
+      : "";
+    document.getElementById("note").value = [
+      productId ? `สั่งซื้อสินค้า ${itemName} (${productId})` : `สั่งซื้อสินค้า ${itemName}`,
+      shippingNote
+    ].filter(Boolean).join("\n");
+  }
+
+  if (isRenewal) {
+    document.getElementById("paymentTitle").innerText = "แจ้งโอนเงินเพื่อต่ออายุ";
+    document.getElementById("paymentDescription").innerText =
+      "กรอกข้อมูลการโอนเงินสำหรับต่ออายุรายการเช่าเดิม แล้วแนบสลิปเพื่อส่งให้แอดมินตรวจสอบ";
+    document.getElementById("note").value = parentOrderId
+      ? `ต่ออายุจากออเดอร์ ${parentOrderId}`
+      : "ต่ออายุรายการเช่าเดิม";
+  }
+
+  function resizeImage(file, callback) {
+    const img = new Image();
+    const reader = new FileReader();
+
+    reader.onload = e => img.src = e.target.result;
+
+    img.onload = function () {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const maxWidth = 600;
+      const scale = maxWidth / img.width;
+
+      canvas.width = maxWidth;
+      canvas.height = img.height * scale;
+
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      callback(canvas.toDataURL("image/jpeg", 0.3));
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  window.submitPayment = function () {
+    if (ORDER_API_URL.includes("PASTE_YOUR")) {
+      alert("ระบบแจ้งโอนยังไม่พร้อมใช้งาน กรุณาลองใหม่ภายหลัง");
+      return;
+    }
+
+    if (!currentUser) {
+      alert("ยัง login ไม่เสร็จ");
+      return;
+    }
+
+    const name = document.getElementById("name").value;
+    const paymentMethod = document.querySelector("input[name=\"paymentMethod\"]:checked")?.value || "โอนธนาคารทหารไทยธนชาต (TTB)";
+    const amount = document.getElementById("amount").value;
+    const note = document.getElementById("note").value;
+    const orderNote = `[ช่องทางชำระเงิน: ${paymentMethod}]${note ? " " + note : ""}`;
+    const slip = document.getElementById("slip").files[0];
+
+    if (!name || !amount || !slip) {
+      alert("กรุณากรอกข้อมูลให้ครบ");
+      return;
+    }
+
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.innerText = "กำลังส่ง...";
+
+    resizeImage(slip, async function (base64Image) {
+      const orderId = "ORDER-" + Date.now();
+
+      try {
+        const apiUrl = isProductPayment ? PRODUCT_API_URL : ORDER_API_URL;
+        const payload = isProductPayment
+          ? {
+              action: "createProductOrder",
+              productId: productId,
+              item: itemName || "สินค้า KOIOT",
+              quantity: 1,
+              amount: amount,
+              uid: currentUser.uid,
+              email: currentUser.email || "",
+              customerName: name,
+              paymentMethod: paymentMethod,
+              note: orderNote,
+              image: base64Image,
+              status: "รอตรวจสอบ",
+              adminReply: ""
+            }
+          : {
+              action: "createOrder",
+              orderId: orderId,
+              uid: currentUser.uid,
+              email: currentUser.email || "",
+              customerName: name,
+              item: itemName || "-",
+              setNumber: set || "",
+              orderType: isRenewal ? "renewal" : "new",
+              parentOrderId: parentOrderId,
+              amount: amount,
+              paymentMethod: paymentMethod,
+              note: orderNote,
+              image: base64Image,
+              status: "รอตรวจสอบ",
+              adminReply: "",
+              code: ""
+            };
+
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+        if (data.success === false) throw new Error(data.message || "บันทึกข้อมูลไม่สำเร็จ");
+
+        alert("ส่งแจ้งโอนเรียบร้อย สามารถติดตามสถานะได้ที่ My Orders");
+        if (isCartPayment) {
+          localStorage.removeItem("koiotProductCart");
+        }
+        window.location.href = "product_orders.html";
+      } catch (error) {
+        console.error(error);
+        alert("ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+        btn.disabled = false;
+        btn.innerText = "ส่งแจ้งโอน";
+      }
+    });
+  };
+  </script>
+</body>
+</html>
+
+
+
+
+
+

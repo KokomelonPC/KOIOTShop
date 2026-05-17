@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOIOT Shop | รายละเอียดสินค้า</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+:root{--bg-sidebar:linear-gradient(180deg,rgba(15,23,42,.98),rgba(30,41,59,.96));--text-main:#0f172a;--text-soft:#475569;--text-muted:#94a3b8;--line-soft:rgba(148,163,184,.18);--brand-blue:#2563eb;--brand-green:#10b981;--shadow-xl:0 28px 70px rgba(15,23,42,.18);--shadow-md:0 12px 28px rgba(15,23,42,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;color:var(--text-main);background:radial-gradient(circle at top left,rgba(14,165,233,.18),transparent 26%),radial-gradient(circle at right center,rgba(16,185,129,.14),transparent 24%),linear-gradient(180deg,#f8fbff 0%,#eef4ff 48%,#f8fafc 100%)}
+.layout{display:flex;min-height:100vh}.sidebar{width:280px;padding:26px 22px;color:#fff;background:var(--bg-sidebar);border-right:1px solid rgba(255,255,255,.06);position:sticky;top:0;height:100vh}.brand-box{padding:22px 18px;border-radius:24px;background:linear-gradient(135deg,rgba(37,99,235,.24),rgba(14,165,233,.16),rgba(16,185,129,.24))}.brand-box h2{margin:0;font-size:1.45rem}.brand-box p{margin:10px 0 0;color:rgba(226,232,240,.88);line-height:1.7;font-size:.95rem}.menu{margin-top:28px}.menu-label{margin:0 0 14px;padding-left:10px;font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(148,163,184,.78)}.menu a,.menu-toggle{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;margin-bottom:10px;border:none;border-radius:14px;background:transparent;color:#dbeafe;font:inherit;font-size:16px;text-align:left;text-decoration:none;cursor:pointer}.menu a:hover,.menu-toggle:hover{background:rgba(59,130,246,.16)}.menu-toggle.active{color:#fff;background:linear-gradient(135deg,rgba(37,99,235,.8),rgba(16,185,129,.78));box-shadow:0 14px 26px rgba(37,99,235,.22)}.menu-toggle span{margin-left:auto}.product-submenu{display:grid;gap:8px;margin:-2px 0 12px 22px;padding-left:12px;border-left:1px solid rgba(148,163,184,.28)}.product-submenu a{margin-bottom:0;padding:10px 12px;border-radius:12px;color:rgba(219,234,254,.9);background:rgba(15,23,42,.18)}.product-submenu a.active{color:#fff;background:rgba(16,185,129,.48)}
+.main{flex:1;padding:26px}.hero{padding:34px;border-radius:34px;color:#fff;background:linear-gradient(135deg,rgba(15,118,110,.96),rgba(37,99,235,.92),rgba(79,70,229,.88));box-shadow:var(--shadow-xl)}.eyebrow{display:inline-block;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.16)}.hero h1{margin:18px 0 0;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1}.hero p{margin:14px 0 0;max-width:760px;color:rgba(239,246,255,.9);line-height:1.8}.content-shell{max-width:1180px;margin:28px auto 0}.panel{background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.92);border-radius:24px;padding:24px;box-shadow:var(--shadow-md)}.detail-grid{display:grid;grid-template-columns:minmax(320px,.95fr) minmax(0,1.05fr);gap:24px;align-items:start}.product-gallery{display:grid;gap:12px}.product-photo{overflow:hidden;border-radius:20px;background:#e2e8f0;border:1px solid var(--line-soft)}.product-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}.thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:10px}.thumb-button{overflow:hidden;padding:0;border:2px solid transparent;border-radius:12px;background:#e2e8f0;cursor:pointer}.thumb-button.active{border-color:var(--brand-blue)}.thumb-button img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}.status-pill{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;padding:10px 14px;border-radius:999px;background:#ecfdf5;color:#047857;font-weight:800}.detail-info h2{margin:0;font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.2}.description{margin:16px 0 0;color:var(--text-soft);line-height:1.85;white-space:pre-line}.meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.meta-card{padding:14px 16px;border-radius:16px;background:#f8fafc;border:1px solid var(--line-soft)}.meta-card span{display:block;color:var(--text-soft);font-size:.9rem}.meta-card strong{display:block;margin-top:4px;font-size:1.16rem}.price{color:#047857}.spec-section{margin-top:20px}.spec-section h3{margin:0 0 12px}.spec-list{display:grid;gap:8px}.spec-row{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:12px 14px;border-radius:14px;background:#f8fafc;border:1px solid var(--line-soft)}.spec-key{color:var(--text-soft);font-weight:700}.spec-value{font-weight:700}.actions{display:grid;grid-template-columns:54px 1fr;gap:12px;margin-top:20px}.cart-button,.buy-button,.secondary-link{min-height:46px;border:none;border-radius:14px;font:inherit;font-weight:850;cursor:pointer;text-decoration:none}.cart-button{background:#eff6ff;color:#1d4ed8;border:1px solid rgba(37,99,235,.22);font-size:1.2rem}.buy-button{background:linear-gradient(135deg,#2563eb,#10b981);color:#fff}.buy-button:disabled,.cart-button:disabled{cursor:not-allowed;background:#cbd5e1;color:#64748b}.secondary-link{display:inline-flex;align-items:center;justify-content:center;margin-top:12px;background:#e2e8f0;color:#0f172a;padding:12px 18px}.empty-state{padding:22px;border-radius:18px;background:#f8fafc;border:1px solid var(--line-soft);color:var(--text-soft);line-height:1.7}footer{margin-top:26px;padding:24px;border-radius:24px;background:rgba(15,23,42,.96);color:var(--text-muted);text-align:center}@media(max-width:900px){.layout{flex-direction:column}.sidebar{width:100%;height:auto;position:relative}.main{padding:18px}.hero{padding:28px 24px;border-radius:28px}.detail-grid{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr}.spec-row{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="retro_theme.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand-box"><h2>🛒 KOIOT Shop</h2><p>ดูรายละเอียดสินค้า ราคา จำนวนคงเหลือ และเลือกสั่งซื้อได้จากหน้านี้</p></div>
+    <nav class="menu">
+      <p class="menu-label">สินค้าและบริการของเรา</p>
+      
+      <button class="menu-toggle active" type="button">🛒 สินค้า KOIOT Shop <span>▴</span></button>
+      <div class="product-submenu">
+        <a href="koiot_products.html">หน้าแรกสินค้า</a>
+        <a href="product_cart.html">ตะกร้าสินค้า</a>
+        <a href="product_account.html">My Account</a>
+        <a href="product_orders.html">My Orders</a>
+        <a href="shipping_address.html">ที่อยู่จัดส่ง</a>
+      </div>
+      
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section class="hero">
+      <span class="eyebrow">Product Detail</span>
+      <h1 id="heroTitle">รายละเอียดสินค้า</h1>
+      <p id="heroDescription">กำลังโหลดข้อมูลสินค้า...</p>
+    </section>
+
+    <div class="content-shell">
+      <section class="panel" id="detailPanel">
+        <div class="empty-state">กำลังโหลดรายละเอียดสินค้า...</div>
+      </section>
+      <footer>KOIOT Shop</footer>
+    </div>
+  </main>
+</div>
+
+<script>
+const PRODUCT_API_URL = "https://script.google.com/macros/s/AKfycbxmE38FRHagWNxzFz8htUBh_2V212bvEOElHwQbYZThoQQJyXcI9JAJI-b3b0u279g/exec";
+const SHIPPING_FEE = 50;
+const FREE_SHIPPING_MINIMUM = 1000;
+let currentProduct = null;
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[char]));
+}
+
+function extractDriveFileId(url) {
+  const text = String(url || "");
+  const byQuery = text.match(/[?&]id=([^&]+)/);
+  if (byQuery) return byQuery[1];
+  const byPath = text.match(/\/d\/([^/]+)/);
+  if (byPath) return byPath[1];
+  return "";
+}
+
+function getProductImageUrl(product) {
+  const fileId = product.imageFileId || extractDriveFileId(product.imageUrl || "");
+  if (fileId) return `https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w1200`;
+  return product.imageUrl || "";
+}
+
+function getDriveThumbnailFromUrl(url) {
+  const fileId = extractDriveFileId(url);
+  return fileId ? `https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w1200` : url;
+}
+
+function splitLines(value) {
+  return String(value || "").split(/\n|,/).map(item => item.trim()).filter(Boolean);
+}
+
+function getGalleryImages(product) {
+  const images = [];
+  const mainImage = getProductImageUrl(product);
+  if (mainImage) images.push(mainImage);
+  splitLines(product.galleryImageUrls).forEach(url => images.push(getDriveThumbnailFromUrl(url)));
+  splitLines(product.galleryImageFileIds).forEach(fileId => images.push(`https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w1200`));
+  return [...new Set(images.filter(Boolean))];
+}
+
+function parseSpecs(product) {
+  const specs = [];
+  if (product.condition) specs.push(["สภาพสินค้า", product.condition]);
+  if (product.warranty) specs.push(["ประกัน", product.warranty]);
+  String(product.specs || "").split("\n").map(line => line.trim()).filter(Boolean).forEach(line => {
+    const separatorIndex = line.search(/:|：|-|=/);
+    if (separatorIndex > 0) {
+      specs.push([line.slice(0, separatorIndex).trim(), line.slice(separatorIndex + 1).trim()]);
+    } else {
+      specs.push(["คุณสมบัติ", line]);
+    }
+  });
+  return specs;
+}
+
+function getProductStock(product) {
+  return Number(product.stock || 0);
+}
+
+function getProductStatus(product) {
+  return String(product.status || "active").toLowerCase();
+}
+
+function formatBaht(value) {
+  return `${Number(value || 0).toLocaleString("th-TH")} บาท`;
+}
+
+function getProductCheckoutSummary(price) {
+  const subtotal = Number(price || 0);
+  const shipping = subtotal > 0 && subtotal < FREE_SHIPPING_MINIMUM ? SHIPPING_FEE : 0;
+  return { subtotal, shipping, total: subtotal + shipping };
+}
+
+function addProductToCart() {
+  if (!currentProduct) return;
+  const productId = currentProduct.productId || "";
+  if (getProductStatus(currentProduct) === "soldout" || getProductStock(currentProduct) <= 0) {
+    alert("สินค้ารายการนี้หมดแล้ว");
+    return;
+  }
+
+  const cart = JSON.parse(localStorage.getItem("koiotProductCart") || "[]");
+  const existing = cart.find(item => item.productId === productId);
+  if (existing) {
+    existing.quantity = Number(existing.quantity || 1) + 1;
+  } else {
+    cart.push({
+      productId,
+      name: currentProduct.name || "สินค้า KOIOT",
+      price: Number(currentProduct.price || 0),
+      imageUrl: getProductImageUrl(currentProduct),
+      quantity: 1
+    });
+  }
+  localStorage.setItem("koiotProductCart", JSON.stringify(cart));
+  alert("เพิ่มสินค้าเข้าตะกร้าแล้ว");
+}
+
+function buyProduct() {
+  if (!currentProduct) return;
+  if (getProductStatus(currentProduct) === "soldout" || getProductStock(currentProduct) <= 0) {
+    alert("สินค้ารายการนี้หมดแล้ว");
+    return;
+  }
+
+  const summary = getProductCheckoutSummary(currentProduct.price);
+  window.location.href = `payment.html?${new URLSearchParams({
+    type: "product",
+    productId: currentProduct.productId || "",
+    item: currentProduct.name || "สินค้า KOIOT",
+    amount: summary.total,
+    subtotal: summary.subtotal,
+    shipping: summary.shipping
+  }).toString()}`;
+}
+
+function renderProduct(product) {
+  currentProduct = product;
+  const stock = getProductStock(product);
+  const soldOut = getProductStatus(product) === "soldout" || stock <= 0;
+  const galleryImages = getGalleryImages(product);
+  const imageUrl = galleryImages[0] || "";
+  const specs = parseSpecs(product);
+
+  document.title = `KOIOT Shop | ${product.name || "รายละเอียดสินค้า"}`;
+  document.getElementById("heroTitle").innerText = product.name || "รายละเอียดสินค้า";
+  document.getElementById("heroDescription").innerText = product.description || "ดูรายละเอียด ราคา และจำนวนคงเหลือก่อนสั่งซื้อ";
+
+  document.getElementById("detailPanel").innerHTML = `
+    <div class="detail-grid">
+      <div class="product-gallery">
+        <div class="product-photo">
+          <img id="mainProductImage" src="${escapeHTML(imageUrl)}" alt="${escapeHTML(product.name || "สินค้า KOIOT")}" onerror="this.style.display='none';">
+        </div>
+        ${galleryImages.length > 1 ? `
+          <div class="thumb-grid">
+            ${galleryImages.map((url, index) => `
+              <button class="thumb-button ${index === 0 ? "active" : ""}" type="button" onclick="setMainImage('${escapeHTML(url)}', this)" aria-label="ดูรูปสินค้า ${index + 1}">
+                <img src="${escapeHTML(url)}" alt="${escapeHTML(product.name || "สินค้า KOIOT")} ${index + 1}">
+              </button>
+            `).join("")}
+          </div>
+        ` : ""}
+      </div>
+      <div class="detail-info">
+        <span class="status-pill">${soldOut ? "สินค้าหมด" : "พร้อมขาย"}</span>
+        <h2>${escapeHTML(product.name || "ไม่มีชื่อสินค้า")}</h2>
+        <p class="description">${escapeHTML(product.description || "ยังไม่มีรายละเอียดสินค้า")}</p>
+        <div class="meta-grid">
+          <div class="meta-card"><span>ราคา</span><strong class="price">${formatBaht(product.price)}</strong></div>
+          <div class="meta-card"><span>จำนวนคงเหลือ</span><strong>${soldOut ? "สินค้าหมด" : stock.toLocaleString("th-TH")}</strong></div>
+          <div class="meta-card"><span>รหัสสินค้า</span><strong>${escapeHTML(product.productId || "-")}</strong></div>
+          <div class="meta-card"><span>สถานะ</span><strong>${escapeHTML(product.status || "active")}</strong></div>
+        </div>
+        ${specs.length ? `
+          <div class="spec-section">
+            <h3>คุณสมบัติสินค้า</h3>
+            <div class="spec-list">
+              ${specs.map(([key, value]) => `
+                <div class="spec-row">
+                  <span class="spec-key">${escapeHTML(key)}</span>
+                  <span class="spec-value">${escapeHTML(value)}</span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        ` : ""}
+        <div class="actions">
+          <button class="cart-button" type="button" onclick="addProductToCart()" ${soldOut ? "disabled" : ""} title="เพิ่มลงตะกร้า" aria-label="เพิ่มลงตะกร้า">🛒</button>
+          <button class="buy-button" type="button" onclick="buyProduct()" ${soldOut ? "disabled" : ""}>${soldOut ? "สินค้าหมด" : "ซื้อสินค้า"}</button>
+        </div>
+        <a class="secondary-link" href="koiot_products.html">กลับไปหน้าสินค้า</a>
+      </div>
+    </div>
+  `;
+}
+
+function setMainImage(url, button) {
+  const mainImage = document.getElementById("mainProductImage");
+  if (mainImage) mainImage.src = url;
+  document.querySelectorAll(".thumb-button").forEach(item => item.classList.remove("active"));
+  if (button) button.classList.add("active");
+}
+
+async function loadProductDetail() {
+  const productId = new URLSearchParams(location.search).get("productId") || "";
+  const panel = document.getElementById("detailPanel");
+  if (!productId) {
+    panel.innerHTML = `<div class="empty-state">ไม่พบรหัสสินค้า กรุณากลับไปเลือกสินค้าจากหน้ารายการ</div>`;
+    return;
+  }
+
+  try {
+    const response = await fetch(`${PRODUCT_API_URL}?action=getProducts`);
+    const data = await response.json();
+    const products = data.products || [];
+    const product = products.find(item => String(item.productId || "") === productId);
+    if (!product) {
+      panel.innerHTML = `<div class="empty-state">ไม่พบสินค้านี้ หรือสินค้าถูกซ่อนจากระบบแล้ว</div>`;
+      return;
+    }
+    renderProduct(product);
+  } catch (error) {
+    console.error(error);
+    panel.innerHTML = `<div class="empty-state">ยังโหลดรายละเอียดสินค้าไม่ได้ กรุณาลองใหม่อีกครั้ง</div>`;
+  }
+}
+
+loadProductDetail();
+</script>
+</body>
+</html>
+
+
+
+
+
+

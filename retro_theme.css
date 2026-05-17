@@ -1,0 +1,336 @@
+﻿:root {
+  --bg-sidebar: #20302d !important;
+  --text-main: #1f2937 !important;
+  --text-soft: #6f665a !important;
+  --text-muted: #8a7d6d !important;
+  --line-soft: #e7dcc8 !important;
+  --brand-blue: #0f766e !important;
+  --brand-indigo: #20302d !important;
+  --brand-green: #0f766e !important;
+  --shadow-xl: 0 22px 54px rgba(68, 55, 38, 0.14) !important;
+  --shadow-md: 0 14px 30px rgba(68, 55, 38, 0.10) !important;
+}
+
+* { letter-spacing: 0 !important; }
+
+html { background: #fbf7ef; }
+
+body {
+  color: #1f2937 !important;
+  background: linear-gradient(180deg, #fbf7ef 0%, #edf7f4 54%, #fbf7ef 100%) !important;
+}
+
+.layout,
+.main,
+.content-shell,
+.shop-shell,
+.shell {
+  background: transparent !important;
+}
+
+.sidebar {
+  color: #fff !important;
+  background: #20302d !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: 12px 0 34px rgba(32, 48, 45, 0.14) !important;
+}
+
+.brand-box,
+.brand {
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: linear-gradient(135deg, rgba(255, 250, 240, 0.13), rgba(15, 118, 110, 0.16)) !important;
+  box-shadow: none !important;
+}
+
+.brand-box h2,
+.brand h1,
+.brand {
+  color: #fffaf0 !important;
+}
+
+.brand-box p,
+.brand p,
+.menu-label {
+  color: rgba(255, 250, 240, 0.72) !important;
+}
+
+.menu a,
+.menu-toggle,
+.nav-links a,
+.account-item {
+  border-radius: 8px !important;
+  color: #fffaf0 !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.menu a:hover,
+.menu-toggle:hover,
+.menu a.active,
+.menu-toggle.active,
+.product-submenu a.active,
+.account-item:hover {
+  color: #fff !important;
+  background: rgba(255, 250, 240, 0.12) !important;
+  border-color: rgba(255, 250, 240, 0.18) !important;
+  transform: none !important;
+}
+
+.product-submenu {
+  border-left-color: rgba(255, 250, 240, 0.22) !important;
+}
+
+.product-submenu a {
+  border-radius: 8px !important;
+  background: rgba(0, 0, 0, 0.10) !important;
+}
+
+.hero,
+.hero-copy {
+  color: #1f2937 !important;
+  border-radius: 12px !important;
+  border: 1px solid #e7dcc8 !important;
+  background: linear-gradient(135deg, #fffaf0 0%, #e9f8f2 100%) !important;
+  box-shadow: 0 22px 54px rgba(68, 55, 38, 0.14) !important;
+}
+
+.hero::before,
+.hero::after {
+  opacity: 0 !important;
+}
+
+.eyebrow,
+.status-pill,
+.summary-chip {
+  color: #0f766e !important;
+  background: #ccfbf1 !important;
+  border: 1px solid rgba(15, 118, 110, 0.14) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+}
+
+.hero h1,
+.hero h2,
+.hero-content h1,
+.panel h2,
+.main h1,
+.detail-info h2,
+.section h2 {
+  color: #1f2937 !important;
+}
+
+.hero p,
+.panel p,
+.note,
+.description,
+.order-meta,
+.product-card p,
+.preview-item span,
+.empty-state,
+.detail-row label,
+.meta-card span,
+.contact-card span,
+.profile-label,
+.section-head p,
+.notice span {
+  color: #6f665a !important;
+}
+
+.panel,
+.hero-account-panel,
+.product-card,
+.order-item,
+.preview-item,
+.empty-state,
+.meta-card,
+.contact-card,
+.detail-row,
+.product-photo,
+.thumb-button,
+.admin-grid .panel,
+.form-card,
+.payment-card,
+.qr-card,
+.bank-card,
+.detail-panel,
+.account-dropdown,
+.notice,
+.stat,
+.side-panel {
+  border-radius: 10px !important;
+  border: 1px solid #e7dcc8 !important;
+  background: #fffaf0 !important;
+  box-shadow: 0 14px 30px rgba(68, 55, 38, 0.10) !important;
+}
+
+.product-card,
+.order-item,
+.product-item,
+.address-card {
+  background: #fffaf0 !important;
+}
+
+.product-card img,
+.product-photo,
+.product-photo img,
+.thumb-button,
+.product-art,
+.qr-box {
+  background: #f4ead7 !important;
+}
+
+.product-art span,
+.empty-icon {
+  color: #0f766e !important;
+  border-color: #d6c4a8 !important;
+  background: #fffaf0 !important;
+}
+
+.product-price,
+.price,
+.detail-value,
+.meta-card strong,
+.contact-card strong,
+.profile-value,
+.product-card h3,
+.product-card h3 a,
+.order-item strong,
+.product-item strong {
+  color: #1f2937 !important;
+}
+
+.product-price,
+.price {
+  color: #0f766e !important;
+}
+
+.product-stock,
+.stock {
+  color: #9a5b13 !important;
+  background: #f4ead7 !important;
+  border: 1px solid #e7dcc8 !important;
+}
+
+input,
+select,
+textarea,
+.search,
+.account-trigger {
+  color: #1f2937 !important;
+  border-radius: 8px !important;
+  border: 1px solid #d6c4a8 !important;
+  background: #fffaf0 !important;
+  box-shadow: none !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9c8f7b !important;
+}
+
+button,
+.button,
+.hero-action,
+.primary,
+.primary-link,
+.buy-button,
+.submit-btn,
+.toolbar-button,
+.link-button.primary,
+.actions .primary,
+.login-btn,
+.register-btn {
+  border-radius: 8px !important;
+  border: 1px solid transparent !important;
+  color: #fff !important;
+  background: #0f766e !important;
+  box-shadow: none !important;
+}
+
+.secondary,
+.secondary-link,
+.cart-button,
+.ghost-button,
+.link-button.secondary,
+.actions .secondary,
+.filter-chip,
+.chip,
+.cart-link,
+.slip-link,
+.back-home {
+  border-radius: 8px !important;
+  color: #20302d !important;
+  background: #f4ead7 !important;
+  border: 1px solid #e7dcc8 !important;
+  box-shadow: none !important;
+}
+
+button:hover,
+.button:hover,
+a:hover {
+  filter: brightness(0.98);
+}
+
+button:disabled,
+.buy-button:disabled,
+.cart-button:disabled {
+  color: #8a7d6d !important;
+  background: #e7dcc8 !important;
+  border-color: #d6c4a8 !important;
+}
+
+footer {
+  color: #6f665a !important;
+  border-radius: 10px !important;
+  border: 1px solid #e7dcc8 !important;
+  background: #fffaf0 !important;
+  box-shadow: none !important;
+}
+
+.table,
+table {
+  color: #1f2937 !important;
+  background: #fffaf0 !important;
+}
+
+hr,
+.detail-row,
+.profile-line {
+  border-color: #e7dcc8 !important;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    box-shadow: 0 12px 28px rgba(32, 48, 45, 0.12) !important;
+  }
+}
+/* Account dropdown lives on a light hero panel, so it needs dark text instead of sidebar text color. */
+.hero-account-panel .account-dropdown,
+.hero-account-panel .account-menu .account-dropdown {
+  color: #1f2937 !important;
+  background: #fffaf0 !important;
+}
+
+.hero-account-panel .account-item,
+.hero-account-panel .account-dropdown .account-item,
+.hero-account-panel .account-dropdown a,
+.hero-account-panel .account-dropdown button {
+  color: #20302d !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+.hero-account-panel .account-item:hover,
+.hero-account-panel .account-dropdown .account-item:hover {
+  color: #0f766e !important;
+  background: #f4ead7 !important;
+  border-color: #e7dcc8 !important;
+}
+
+.hero-account-panel .account-trigger,
+.hero-account-panel .account-trigger strong,
+.hero-account-panel .account-trigger small {
+  color: #1f2937 !important;
+}
